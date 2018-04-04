@@ -3,7 +3,7 @@ using namespace std;
 
 void input(vofv &arr, vec &cost,int m,int n)
 {
-	ll x;
+	double x;
 	vector <double> v;
 	
 	cout<<"Enter the coefficents (along with b): "<<endl;

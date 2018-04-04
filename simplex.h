@@ -48,15 +48,23 @@ void simplex(vofv &arr, vec &cost,vec &bvar,vec &delta,vec minratio,int m,int n)
 			
 			//displayc(delta);
 			//column number which enters basis
+			int count=0;
 			int enter_var = distance(delta.begin(),min_element(delta.begin(),delta.end()));
 			for(int i=0;i<m;i++){
 				if(arr[i][enter_var]>0)
 				minratio.pb(arr[i][n+m]/arr[i][enter_var]);	
-				else
-				minratio.pb(INT_MAX);	
+				else{
+					minratio.pb(INT_MAX);
+					++count;
+				}		
 			}
-			//displayc(minratio);
 			
+			if(count==m){
+				//cout<<"\nbreak\n";
+				break;
+			}
+			
+			//displayc(minratio);
 			//row number which leaves basis
 			int leav_var = distance(minratio.begin(),min_element(minratio.begin(),minratio.end()));
 			//cout<<endl<<arr[leav_var][enter_var]<<endl;
@@ -66,6 +74,8 @@ void simplex(vofv &arr, vec &cost,vec &bvar,vec &delta,vec minratio,int m,int n)
 			cout<<endl;*/
 			
 			double pivot=arr[leav_var][enter_var];
+			//cout<<endl<<"Pivot: "<<pivot<<endl;
+			
 			for(int i=0;i<=n+m;i++){
 				arr[leav_var][i]/=pivot;
 			}
@@ -81,6 +91,7 @@ void simplex(vofv &arr, vec &cost,vec &bvar,vec &delta,vec minratio,int m,int n)
 			delta.clear();
 			minratio.clear();
 			zj_cj(arr,cost,bvar,delta,m,n);	
+			
 		}
 }
 double optimum(vofv arr,vec bvar,vec cost,int m,int n){

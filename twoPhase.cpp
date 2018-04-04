@@ -38,7 +38,7 @@ void input(vofv &arr, vec &cost,int m,int n,int p)
 		  cin>>x;
 		  v.pb(x);
 		}
-		//---------------------Adding surplus variables
+		//---------------------Adding surplus variables and artificial variables
 		for(int k=0;k<i+m-p+kk;k++){
 			v.pb(0);
 		}
@@ -117,7 +117,7 @@ for(int j=0;j<pos.size();j++){
 }
 cout<<"\nPHASE2\n";
 display(arr);	
-cost.clear();
+cost.clear();//using same cost array so clearing
 cout<<"Enter the coefficients of cost function: "<<endl;
 for(int i=0;i<n;i++){
 	cin>>x;cost.pb(x);
